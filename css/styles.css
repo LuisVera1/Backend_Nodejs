@@ -97,9 +97,17 @@ body {
 	color: #525252;
 }
 
+#imgHead{
+	overflow: hidden;
+	height: 280px;
+	position: relative;
+}
+
 #ImgTop {
 	/* width: 655px; */
 	padding: 0px;
+	position: absolute;
+	bottom: -30%
 }
 
 .card {
@@ -142,6 +150,10 @@ body {
 
 .FS12 {
 	font-size: 12px;
+}
+
+.FS16{
+	font-size: 16px;
 }
 
 .CardBody,
@@ -206,7 +218,7 @@ body {
 
 .Spacer {
 	height: 20px;
-	width: 180px;
+	width: 170px;
 }
 
 .Save {
