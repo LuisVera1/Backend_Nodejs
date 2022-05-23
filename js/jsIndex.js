@@ -3,10 +3,6 @@ let blog = "blog.html"
 const URL = 'https://kdm1-11734-default-rtdb.firebaseio.com/DevTo/';
 //const URL = 'https://nestorfirebase-default-rtdb.firebaseio.com/';
 
-
-// let hashCollection = [];
-// let data = {}
-
 //DB reading
 function getData() {
 	const xhr = new XMLHttpRequest();
@@ -14,6 +10,7 @@ function getData() {
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4){
 			if(xhr.status==200){
+				numCard = 0;
 				const response = JSON.parse(xhr.response)
 				for(let property in response ) {
 					//data[property] = response[property];
@@ -32,6 +29,7 @@ function getData() {
 }
 getData();
 
+//Delete element of DB
 function deleteElement(hash) {
 	const URL_DELETE = URL + hash + ".json"
 	console.log(URL_DELETE);
@@ -48,6 +46,7 @@ function deleteElement(hash) {
 	//getData();
 }
 
+//Date format to cards
 function showDate(strDate) {
 	let res;
 	let dmy = strDate.split("-");
@@ -193,7 +192,7 @@ function createCard(data,hash) {
 	main.appendChild(row);
 }
 
-
+//Delete elemento from DOM
 function deleteCard(){
 	let elementToDel = document.querySelectorAll(".fullCard")
 	elementToDel.forEach((item) => {
@@ -230,6 +229,7 @@ f365d.addEventListener("click",(event) =>{
 	deleteCard();
 	getData();
 });
+
 
 //#region Date
 
