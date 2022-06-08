@@ -1,0 +1,27 @@
+.maincontainer{
+    max-width: 700px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+}
+
+.form-control{
+    margin : 5px;
+    width: 700px;
+    outline: none;
+}
+
+input{
+    max-width: 60%;
+}
+
+#textAreaTitle{
+    font-size: 25px;
+    font-weight: bold;
+    color: rgb(75, 72, 72);
+}
+#textAreaTag{
+    font-size: 12px;
+    color: rgb(75, 72, 72);
+}
