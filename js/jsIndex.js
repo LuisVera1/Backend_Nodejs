@@ -1,12 +1,13 @@
 
 let blog = "blog.html"
-const URL = 'https://kdm1-11734-default-rtdb.firebaseio.com/DevTo/';
+//const URL = 'https://kdm1-11734-default-rtdb.firebaseio.com/DevTo/';
 //const URL = 'https://nestorfirebase-default-rtdb.firebaseio.com/';
+const URL = 'http://localhost:8000'
 
 //DB reading
 function getData() {
 	const xhr = new XMLHttpRequest();
-	const URL_FIREBASE = URL + '.json';
+	//const URL_FIREBASE = URL + '.json';
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4){
 			if(xhr.status==200){
@@ -18,19 +19,19 @@ function getData() {
 					let dateArt = calcDate(response[property].date);
 
 					if (dateArt > range){
-						createCard(response[property],property)
+						createCard(response[property],response[property]._id)
 					}
 				}
 			}
 		};
 	};
-	xhr.open("GET",URL_FIREBASE);
+	xhr.open("GET",URL);  //xhr.open("GET",URL_FIREBASE);
 	xhr.send();	
 }
 getData();
 
 //Delete element of DB
-function deleteElement(hash) {
+/* function deleteElement(hash) {
 	const URL_DELETE = URL + hash + ".json"
 	console.log(URL_DELETE);
 	const xhr = new XMLHttpRequest();
@@ -44,7 +45,7 @@ function deleteElement(hash) {
 	xhr.open("DELETE",URL_DELETE);
 	xhr.send();	
 	//getData();
-}
+} */
 
 //Date format to cards
 function showDate(strDate) {
@@ -52,15 +53,15 @@ function showDate(strDate) {
 	let dmy = strDate.split("-");
 
 	let month ={
-		"01": "Jan",
-		"02": "Feb",
-		"03": "Mar",
-		"04": "Apr",
-		"05": "May",
-		"06": "Jun",
-		"07": "Jul",
-		"08": "Ago",
-		"09": "Sep",
+		"1": "Jan",
+		"2": "Feb",
+		"3": "Mar",
+		"4": "Apr",
+		"5": "May",
+		"6": "Jun",
+		"7": "Jul",
+		"8": "Ago",
+		"9": "Sep",
 		"10": "Oct",
 		"11": "Nov",
 		"12": "Dec"
@@ -70,7 +71,7 @@ function showDate(strDate) {
 	let m = month[dmy[1]];
 	let y = dmy[2];
 
-	if(y === "22"){
+	if(y === "2022"){
 		res = m + " " + d
 	} else{
 		res = m + " " + d + " '" + y
@@ -177,9 +178,9 @@ function createCard(data,hash) {
 
 	let btnDelete = document.createElement('button');
 	btnDelete.setAttribute('type', 'button');
-	btnDelete.setAttribute("data-hash", hash)
+	//btnDelete.setAttribute("data-hash", hash)
 	btnDelete.classList.add('btn', 'btn-sm', 'Save');
-	btnDelete.textContent = 'Delete';
+	btnDelete.textContent = 'Save'; //se cambia el delete por no necesitar la funcion
 
 	CardFoot.appendChild(heart);
 	CardFoot.appendChild(globe);
@@ -193,20 +194,20 @@ function createCard(data,hash) {
 }
 
 //Delete elemento from DOM
-function deleteCard(){
+/* function deleteCard(){
 	let elementToDel = document.querySelectorAll(".fullCard")
 	elementToDel.forEach((item) => {
 		item.remove();
 	})
-}
+} */
 
 main.addEventListener("click",(event) =>{
 	if(event.target.dataset.hash){
 		// let del = event.target.dataset.hash;
 		// let elementDel = document.querySelector("."+del)
 		// elementDel.remove();
-		deleteCard();
-		deleteElement(event.target.dataset.hash);
+		//deleteCard();
+		//deleteElement(event.target.dataset.hash);
 	}
 
 	if(event.target.dataset.post){
@@ -214,7 +215,7 @@ main.addEventListener("click",(event) =>{
 	}
 });
 
-let f30d = document.querySelector("#d30");
+/* let f30d = document.querySelector("#d30");
 let f365d = document.querySelector("#d365");
 
 f30d.addEventListener("click",(event) =>{
@@ -228,7 +229,7 @@ f365d.addEventListener("click",(event) =>{
 	range = valToday - 365;
 	deleteCard();
 	getData();
-});
+});  */
 
 
 //#region Date

@@ -1,7 +1,8 @@
 
-const URL = 'https://kdm1-11734-default-rtdb.firebaseio.com/DevTo/';
+//const URL = 'https://kdm1-11734-default-rtdb.firebaseio.com/DevTo/';
 let dataHash = sessionStorage.getItem('Hash');
-//console.log(data);
+const URL = "http://localhost:8000/" + dataHash
+console.log(URL);
 
 
 
@@ -16,7 +17,7 @@ let dataHash = sessionStorage.getItem('Hash');
 
 function getData() {
 	const xhr = new XMLHttpRequest();
-	const URL_FIREBASE = URL + dataHash +'.json';
+	//const URL_FIREBASE = URL + dataHash +'.json';
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4){
 			if(xhr.status==200){
@@ -29,7 +30,7 @@ function getData() {
 			}
 		};
 	};
-	xhr.open("GET",URL_FIREBASE);
+	xhr.open("GET",URL);
 	xhr.send();	
 }
 getData();
@@ -72,6 +73,10 @@ function loadData(data){
     item.src = "img/" + data.autorName + ".png"
   });
 
+  //Top imagen
+  let imageArticle = document.querySelector("#imgTitleArticle")
+  imageArticle.src = data.imgPost
+
   //title
   let title = document.querySelector("#articleTitle")
   title.textContent = data.title;
@@ -94,7 +99,24 @@ function loadData(data){
   let mainArticle = document.querySelector("#textArticle");
   mainArticle.textContent = data.fullPost;
 
+//num comments
+let discussion = document.querySelector('#numComments')
+discussion.textContent = `Discussion (${data.coments.length})`
 
+
+
+
+//comments
+let comment = document.querySelector("#listComments")
+
+data.coments.forEach(item =>{
+  let square = document.createElement('div');
+  let messaje = document.createElement('p');
+  messaje.textContent = item;
+  square.appendChild(messaje);
+  square.classList.add("tableComment");
+  comment.appendChild(square);
+})
 
 
 
@@ -109,15 +131,15 @@ function showDate(strDate) {
 	let dmy = strDate.split("-");
 
 	let month ={
-		"01": "Jan",
-		"02": "Feb",
-		"03": "Mar",
-		"04": "Apr",
-		"05": "May",
-		"06": "Jun",
-		"07": "Jul",
-		"08": "Ago",
-		"09": "Sep",
+		"1": "Jan",
+		"2": "Feb",
+		"3": "Mar",
+		"4": "Apr",
+		"5": "May",
+		"6": "Jun",
+		"7": "Jul",
+		"8": "Ago",
+		"9": "Sep",
 		"10": "Oct",
 		"11": "Nov",
 		"12": "Dec"
@@ -127,7 +149,7 @@ function showDate(strDate) {
 	let m = month[dmy[1]];
 	let y = dmy[2];
 
-	if(y === "22"){
+	if(y === "2022"){
 		res = "Posted on" + d + " " + m
 	} else{
 		res = "Posted on" + d + " " + m + " " + y

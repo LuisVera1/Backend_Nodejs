@@ -459,6 +459,19 @@ body {
 	width: 70%;
 }
 
+.tableComment{
+	border: 1px solid #dedede;
+	border-radius: 8px;
+	padding: 10px;
+	margin: 10px 0px;
+}
+
+.inputMsj{
+	width: 100%;
+	border: 1px solid #dedede;
+	border-radius: 8px;
+}
+
 /* temporales */
 
 /*
@@ -482,4 +495,4 @@ body {
 .Fill {
 	background-color: chocolate;
 }
-+/
+*/
