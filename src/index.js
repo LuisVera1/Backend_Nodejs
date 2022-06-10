@@ -2,8 +2,9 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
 const express = require("express");
+const path = require("path");
 
-const routerKoders = require("./routers/post.router");
+const routerPost = require("./routers/post.router");
 
 const PORT = process.env.PORT;
 const DB_USER = process.env.DB_USER;
@@ -15,9 +16,12 @@ const URL = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}?retry
 
 const server = express();
 
+server.use(express.static(path.join(__dirname, 'public')));
+
+
 server.use(express.json());
 
-server.use('/koders', routerKoders);
+server.use('/post', routerPost);
 
 
 mongoose

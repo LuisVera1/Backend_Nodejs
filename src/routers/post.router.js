@@ -7,6 +7,13 @@ const router = express.Router();
 
 router.use(express.json());
 
+
+router.get('/', (req, res) => {
+  console.log('hola mundo')
+  res.json({mensaje:'hola mundo'})
+})
+
+
 //** Funcion POST para crear*/
 router.post("/", async (req, res) => {
   const article = req.body;

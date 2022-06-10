@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 
 const articleSchema = new mongoose.Schema({
   autorName: String,
-  comentarios: Array,
-  date: Number,
+  coments: [String],
+  date: String,
   fullPost: String,
-  hashtag: Array,
+  hashtag: [String],
   imgPost: String,
   reactions: Number,
   title: String,
