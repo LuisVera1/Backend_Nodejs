@@ -5,52 +5,20 @@ fetch('http://localhost:8080/post')
 
   const onPostRequest = (post) => {
     const xhr = new XMLHttpRequest();
-    //console.log(xhr);
     xhr.addEventListener("readystatechange", () => {
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
-          console.log('hola') //onGuestRequest();
+          console.log('hola');
         }
       }
     });
   
-    const URL_FIREBASE =
-      "https://nestorfirebase-default-rtdb.firebaseio.com/PruebaPost.json";
+    const URL_MONGO =
+    'http://localhost:8080/post';
   
-    xhr.open("POST", URL_FIREBASE);
+    xhr.open("POST", URL_MONGO);
     xhr.send(JSON.stringify(post));
   };
-  
-  // const onGuestRequest = () => {
-  //     const xhr = new XMLHttpRequest();
-  //     //console.log(xhr)
-  //     xhr.addEventListener('readystatechange', () => {
-  //         const postList = [];
-  //         if(xhr.readyState === 4){
-  //             if(xhr.status === 200){
-  //                 const response = JSON.parse(xhr.response);
-  //                 //console.log(response)
-  //                 for(let property in response) {
-  //                     //console.log(response[property]);
-  //                     const singlePost = {
-  //                         id: property,
-  //                         ...response[property],
-  //                     }
-  
-  //                     postList.push(singlePost);
-  //                 }
-  
-  //                 console.log(postList, 'postList')
-  //                 renderList(postList);
-  //             }
-  //         }
-  //     });
-  
-  //     const URL_FIREBASE = 'https://nestorfirebase-default-rtdb.firebaseio.com/PruebaPost.json';
-  
-  //     xhr.open('GET', URL_FIREBASE );
-  //     xhr.send();
-  // };
 
 
 
@@ -89,45 +57,3 @@ button.addEventListener("click", (event) => {
   //renderList(postList);
 });
 
-// const postdev = document.querySelector(".post");
-
-// const createPost = (post, index) => {
-//   const titlePost = document.createElement("h1");
-//   const parrafo = document.createElement("p");
-//   const tagsPost = document.createElement("span");
-
-//   postdev.appendChild(titlePost);
-//   postdev.appendChild(tagsPost);
-//   postdev.appendChild(parrafo);
-
-//   const textTitle = document.createTextNode(`${post.title}`);
-//   const textParrafo = document.createTextNode(`${post.fullPost} `);
-//   const textTags = document.createTextNode(`${post.hastags}`);
-
-//   titlePost.appendChild(textTitle);
-//   parrafo.appendChild(textParrafo);
-//   tagsPost.appendChild(textTags);
-
-//   const button = document.createElement("button");
-//   button.classList.add("btn-danger");
-//   button.classList.add("btn");
-//   button.textContent = "Eliminar";
-//   button.setAttribute("id", post.id);
-//   parrafo.appendChild(button);
-//   //     button.addEventListener('click', (event) => {
-//   //         const removeId = event.target.id;
-//   //         onDeleteRequest(removeId)
-//   //         // renderList()
-//   //     });
-// };
-
-// const renderList = (postListNew) => {
-//   while (postdev.children.length > 0) {
-//     postdev.firstChild.remove();
-//   }
-//   postListNew.forEach((post) => {
-//     createPost(post);
-//   });
-// };
-//document.body.appendChild(postdev);
-//renderList(postList);
