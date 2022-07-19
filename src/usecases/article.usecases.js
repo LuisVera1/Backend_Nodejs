@@ -3,7 +3,6 @@ const Post = require("../models/post.model");
 async function createPost(post) {
   const newPost = new Post(post);
   await Post.create(newPost);
-  //mo hay return, deberia abir el post en la pagina de post
 }
 
 async function getArticles() {
